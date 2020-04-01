@@ -1,6 +1,6 @@
  /*
   * Remove a file
-  * v0.1
+  * v0.2
   * 01.04.2004
   * Nifra -- %TAS%
 */

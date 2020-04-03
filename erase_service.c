@@ -1,6 +1,6 @@
 /*
  * Erases string from file
- * v0.1
+ * v0.2
  * 02.04.2020
  * Nifra -- ASZ
  */
@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
 	char out_fname[256] = "";
 	
 	if (argc != 4) {
-		fprintf(stderr, "erase_service: es <fname> <pos-start> <pos-end>\n");
+		fprintf(stderr, "%s: %s <fname> <pos-start> <pos-end>\n", argv[0], argv[0]);
 		return 0;
 	}
 

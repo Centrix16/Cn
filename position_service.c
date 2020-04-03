@@ -1,3 +1,10 @@
+/*
+ * Changes the cursor position in the console
+ * v0.1
+ * 03.02.2020
+ * Nifra -- ASZ
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 

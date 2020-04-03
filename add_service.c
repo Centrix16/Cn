@@ -9,18 +9,25 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-	FILE *src = fopen(argv[1], "r"), *dst = NULL;
+	FILE *src = NULL, *dst = NULL;
 	char out_fname[256] = "";
-	int i = 0, c = 0, end = atoi(argv[2]);
+	int i = 0, c = 0, end = 0;
+
+	if (argc != 4) {
+		fprintf(stderr, "ads: ads <fname> <pos> <str>\n");
+		return 0;
+	}
 
 	sprintf(out_fname, "%s_out", argv[1]);
 
+	src = fopen(argv[1], "r");
 	dst = fopen(out_fname, "w");
 	if (!dst || !src) {
 		perror("fopen");
 		return 0;
 	}
 
+	end = atoi(argv[2]);
 	c = fgetc(src);
 	while (!feof(src) && i++ < end) {
 		fputc(c, dst);

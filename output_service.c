@@ -7,9 +7,12 @@
 
 #include <stdio.h>
 
+#define COL_MAX 60
+
 int main(int argc, char *argv[]) {
 	FILE *fp = NULL;
 	char ch = (char)0;
+	int col = 0;
 
 	if (argc != 2) {
 		fprintf(stderr, "%s: %s <fname>\n", argv[0], argv[0]);
@@ -20,8 +23,13 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
-	while ((ch = getc(fp)) != EOF) {
-		putchar(ch);
+	ch = getc(fp);
+	while (!feof(fp)) {
+		if (col++ % COL_MAX == 0 && ch != '\n')
+			putchar('\n');	
+		else
+			putchar(ch);
+		ch = getc(fp);
 	}
 	fclose(fp);
 

@@ -1,6 +1,6 @@
 /*
  * set text color
- * v0.1
+ * v0.2
  * 02.04.2020
  * Nifra -- ASZ
  */
@@ -33,7 +33,7 @@ char *colors[] = {"bk", "bl", "gr", "az", "rd", "pk", "yl", "wh", "-br", "-nm"};
 
 int main(int argc, char *argv[]) {
 	if (argc != 4) {
-		fprintf(stderr, "color_service: cls <bg> <fg> <bright>\n");
+		fprintf(stderr, "%s: %s <bg> <fg> <bright>\n", argv[0], argv[0]);
 	}
 	set_color(get_code(argv[1]), get_code(argv[2]), get_code(argv[3]));
 	return 0;

@@ -1,6 +1,6 @@
 /*
  * Adds a string to the file
- * v0.1
+ * v0.2
  * 01.04.2020
  * Nifra -- ASZ
  */
@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
 	int i = 0, c = 0, end = 0;
 
 	if (argc != 4) {
-		fprintf(stderr, "ads: ads <fname> <pos> <str>\n");
+		fprintf(stderr, "%s: %s <fname> <pos> <str>\n", argv[0], argv[0]);
 		return 0;
 	}
 

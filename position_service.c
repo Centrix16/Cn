@@ -1,6 +1,6 @@
 /*
  * Changes the cursor position in the console
- * v0.1
+ * v0.2
  * 03.02.2020
  * Nifra -- ASZ
  */
@@ -24,7 +24,7 @@
 
 int main(int argc, char *argv[]) {
 	if (argc != 3) {
-		fprintf(stderr, "ps: ps <x> <y>\n");
+		fprintf(stderr, "%s: %s <x> <y>\n", argv[0], argv[0]);
 		return 0;
 	}
 

@@ -1,7 +1,7 @@
 /*
  * File output to the screen
- * v0.2
- * 02.04.2020
+ * v0.3
+ * 03.04.2020
  * Nifra -- TAS
  */
 

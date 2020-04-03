@@ -6,16 +6,15 @@
  */
 
 #include <stdio.h>
-
-#define COL_MAX 60
+#include <stdlib.h>
 
 int main(int argc, char *argv[]) {
 	FILE *fp = NULL;
 	char ch = (char)0;
-	int col = 0;
+	int col = 0, col_max = 0;
 
-	if (argc != 2) {
-		fprintf(stderr, "%s: %s <fname>\n", argv[0], argv[0]);
+	if (argc != 3) {
+		fprintf(stderr, "%s: %s <fname> <col-max>\n", argv[0], argv[0]);
 		return 1;
 	}
 	if ((fp = fopen(argv[1], "r")) == NULL) {
@@ -23,9 +22,10 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
+	col_max = atoi(argv[2]);
 	ch = getc(fp);
 	while (!feof(fp)) {
-		if (col++ % COL_MAX == 0 && ch != '\n')
+		if (col++ % col_max == 0 && ch != '\n')
 			putchar('\n');	
 		else
 			putchar(ch);

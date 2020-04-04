@@ -7,6 +7,7 @@ all:
 	gcc -o bin/crs create_service.c
 	gcc -o bin/rms remove_service.c
 	gcc -o bin/fs find_service.c
+	gcc -o bin/ins insert_service.c 
 	gcc -o bin/host host.c
 rmb:
 	rm -rf bin

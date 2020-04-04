@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
 	int col = 0, col_max = 0;
 
 	if (argc != 3) {
-		fprintf(stderr, "%s: %s <fname> <col-max>\n", argv[0], argv[0]);
+		fprintf(stderr, "%s: %s <fname> <col-max>\n", argv[1], argv[2]);
 		return 1;
 	}
 	if ((fp = fopen(argv[1], "r")) == NULL) {

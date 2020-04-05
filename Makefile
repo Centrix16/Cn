@@ -1,4 +1,4 @@
-servs:
+services:
 	mkdir bin
 	gcc -o bin/ads servs/add_service.c
 	gcc -o bin/cs servs/color_service.c

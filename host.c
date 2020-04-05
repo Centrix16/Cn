@@ -1,6 +1,6 @@
 /*
  * host -- combines services together
- * v0.2
+ * v0.3
  * 05.04.2020
  * Nifra -- ASZ
  */
@@ -16,15 +16,17 @@
 
 #define output(...) {mvCursor(X_START, Y_START+line); printf(__VA_ARGS__); line++;}
 
-char *get_buf_name(char *fname);
-void get_file_info(char *fname);
+char *get_buf_name(char*);
+void get_file_info(char*);
 void navigation();
 void input();
+int frac_to_c(char*, int, int);
 
 int x = 1, y = 1;
 int line = 0;
 
 char input_buf[1024];
+char *fname = NULL;
 
 int main(int argc, char *argv[]) {
 	char cmd[256] = "";	
@@ -40,6 +42,7 @@ int main(int argc, char *argv[]) {
 
 	/* buffer creation */
 
+	fname = argv[1];
 	// sprintf(cmd, "%s/%s %s %d", SERV_DIR, OUTPUT_SERVICE, get_buf_name(argv[1]), COL_MAX);
 	sprintf(cmd, "%s/%s %s %d", SERV_DIR, OUTPUT_SERVICE, argv[1], COL_MAX);
 	system(cmd);
@@ -47,6 +50,7 @@ int main(int argc, char *argv[]) {
 	get_file_info(argv[1]);
 	navigation();
 	clean();
+
 	return 0;
 }
 
@@ -117,8 +121,33 @@ int is_valid_c(int c) {
 	return 0;
 }
 
+// rows and columns to columns (in file)
+int frac_to_c(char *fname, int rows, int columns) {
+	FILE *file = fopen(fname, "r");	
+	int out = 0, c = 0;
+
+	if (!file) {
+		perror("fopen");	
+		exit(0);	
+	}
+
+	for (int i = 0; i < rows-1; i++) {
+		c = fgetc(file);
+
+		while (c != '\n') {
+			out++;	
+			c = fgetc(file);
+		}
+	}
+
+	fclose(file);
+	return out+columns;
+}
+
 void input() {
 	int c = 0, i = 0, col = USER_INPUT_DEFAULT_COL_OFFSET, row = USER_INPUT_DEFAULT_ROW;
+	int pos = 0;
+	char cmd[256] = "";
 
 	while (i < 1024 && c != ESC) {
 		switch (c) {	
@@ -168,4 +197,9 @@ void input() {
 	}
 
 	setColor(BLACK, WHITE, NORMAL);
+
+	pos = frac_to_c(fname, y, x);
+
+	sprintf(cmd, "%s/%s %s %d \"%s\"", SERV_DIR, ADD_SERVICE, fname, pos, input_buf);
+	system(cmd);
 }

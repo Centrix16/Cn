@@ -4,6 +4,7 @@
 #define SERV_DIR "bin"
 
 #define OUTPUT_SERVICE "os"
+#define ADD_SERVICE "ads"
 
 #define COL_MAX 64
 #define COL_END 100
@@ -15,6 +16,9 @@
 
 #define ESC 27
 #define NL 10
-#define BS 127 
+#define BS 127
+
+#define LENGHT 100
+#define HEIGHT 30
 
 #endif

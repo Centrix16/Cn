@@ -17,6 +17,7 @@ void cursorLeft(int x, int y);
 void cursorRight(int x, int y);
 void clean();
 unsigned int readKb();
+void setWindowSize(int x_size, int y_size);
 
 #ifdef WIN32
 

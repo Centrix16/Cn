@@ -33,9 +33,9 @@ int main(int argc, char *argv[]) {
 		fputc(c, dst);
 		c = fgetc(src);
 	}
+
 	fprintf(dst, "%s", argv[3]);
 
-	c = fgetc(src);
 	while (!feof(src)) {
 		fputc(c, dst);
 		c = fgetc(src);

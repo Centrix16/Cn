@@ -51,6 +51,11 @@
 		system("cls");
 	}
 
+	void setWindowSize(int x_size, int y_size) {
+		SMALL_RECT windowSize = {0 , 0 , x_size , y_size} //change the values
+	    SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE), TRUE, &windowSize);
+	}
+
 #else
 
 	/* Code for *nix */
@@ -121,6 +126,10 @@
 
 	void clean() {
 		system("clear");
+	}
+
+	void setWindowSize(int x_size, int y_size) {
+		printf("\e[8;%d;%dt", y_size, x_size);
 	}
 
 #endif

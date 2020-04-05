@@ -1,3 +1,10 @@
+/*
+ * host -- combines services together
+ * v0.1
+ * 05.04.2020
+ * Nifra -- ASZ
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

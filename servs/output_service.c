@@ -1,12 +1,13 @@
 /*
  * File output to the screen
- * v0.3
- * 03.04.2020
+ * v0.4
+ * 06.04.2020
  * Nifra -- TAS
  */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "../coniox/coniox.h"
 
 int main(int argc, char *argv[]) {
 	FILE *fp = NULL;
@@ -22,11 +23,16 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
+	mvCursor(1, 1);
+	setColor(BLACK, WHITE, NORMAL);
+
 	col_max = atoi(argv[2]);
 	ch = getc(fp);
 	while (ch != EOF) {
 		if ((col % col_max == 0 && col) && ch != '\n')
 			putchar('\n');	
+		else if (ch == '\n')
+			puts("~");	
 		else
 			putchar(ch);
 		ch = getc(fp);

@@ -25,6 +25,12 @@
 #define LENGHT 100
 #define HEIGHT 30
 
+#ifdef WIN32
+	#define DIR_SEP '\\'
+#else
+	#define DIR_SEP '/'
+#endif
+
 /* host_funcs.c */
 char *get_buf_name(char*);
 void get_file_info(char*);

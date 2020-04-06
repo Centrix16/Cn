@@ -1,6 +1,6 @@
 /*
  * host -- combines services together
- * v0.5
+ * v0.6
  * 06.04.2020
  * Nifra -- ASZ
  */
@@ -15,28 +15,34 @@
 #include "host.h"
 
 int main(int argc, char *argv[]) {
-	void (*flag_funcs[])() = {switch_m, switch_h, switch_v};	
+	void (*flag_funcs[])() = {switch_m, switch_h, switch_v, switch_d, switch_H};	
+	char *fname = NULL; 
 
 	if (argc < 2) {
 		fprintf(stderr, "%s: %s <fname> <optional-flags>\n", argv[0]);
 		return 0;
 	}
+
+	fname = argv[1];
+
 	if (argc == 3) {
-		proc("mhv", flag_funcs, 3, argv[2]);
+		proc("mhvdH", flag_funcs, 5, argv[2]);
 	}
 
 	if (get_m())
 		setWindowSize(LENGHT, HEIGHT);
-
+	if (get_use_help_file())
+		fname = "doc/help";
+	if (!get_direct_use())
+		; /* buffer creation */
+	
 	clean();
 
-	/* buffer creation */
-
 	// update(get_buf_name(argv[1]));
-	update(argv[1]);
+	update(fname);
 
-	get_file_info(argv[1]);
-	navigation(argv[1]);
+	get_file_info(fname);
+	navigation(fname);
 	clean();
 
 	return 0;

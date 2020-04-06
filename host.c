@@ -1,7 +1,7 @@
 /*
  * host -- combines services together
- * v0.3
- * 05.04.2020
+ * v0.4
+ * 06.04.2020
  * Nifra -- ASZ
  */
 
@@ -18,19 +18,17 @@
 
 char *get_buf_name(char*);
 void get_file_info(char*);
-void navigation();
-void input();
+void navigation(char*);
+void input(char*);
+void update(char*);
 int frac_to_c(char*, int, int);
 
 int x = 1, y = 1;
 int line = 0;
 
 char input_buf[1024];
-char *fname = NULL;
 
 int main(int argc, char *argv[]) {
-	char cmd[256] = "";	
-
 	if (argc < 2) {
 		fprintf(stderr, "%s: %s <fname>\n", argv[0]);
 		return 0;
@@ -42,16 +40,21 @@ int main(int argc, char *argv[]) {
 
 	/* buffer creation */
 
-	fname = argv[1];
-	// sprintf(cmd, "%s/%s %s %d", SERV_DIR, OUTPUT_SERVICE, get_buf_name(argv[1]), COL_MAX);
-	sprintf(cmd, "%s/%s %s %d", SERV_DIR, OUTPUT_SERVICE, argv[1], COL_MAX);
-	system(cmd);
+	// update(get_buf_name(argv[1]));
+	update(argv[1]);
 
 	get_file_info(argv[1]);
-	navigation();
+	navigation(argv[1]);
 	clean();
 
 	return 0;
+}
+
+void update(char *fname) {
+	char cmd[256] = "";	
+
+	sprintf(cmd, "%s/%s %s %d", SERV_DIR, OUTPUT_SERVICE, fname, COL_MAX);
+	system(cmd);
 }
 
 char *get_buf_name(char *fname) {
@@ -73,14 +76,14 @@ void get_file_info(char *fname) {
 	output("%s", input_buf);
 }
 
-void navigation() {
+void navigation(char *fname) {
 	int c = 0;
 
 	while (c != ESC) {
 		switch (c) {
 			case 'h':
 			case 'a':
-				if (x > 0)
+				if (x > 1)
 					x--;	
 			break;
 
@@ -91,8 +94,8 @@ void navigation() {
 
 			case 'k':
 			case 'w':
-				if (y > 0)
-					y--;	
+				if (y > 1)
+					y--;
 			break;
 
 			case 'l':
@@ -103,7 +106,7 @@ void navigation() {
 
 			default:
 				if (c == 'i')
-					input();	
+					input(fname);	
 			break;
 		}
 
@@ -128,7 +131,7 @@ int frac_to_c(char *fname, int rows, int columns) {
 
 	if (!file) {
 		perror("fopen");	
-		exit(0);	
+		exit(0);
 	}
 
 	for (int i = 0; i < rows-1; i++) {
@@ -138,13 +141,14 @@ int frac_to_c(char *fname, int rows, int columns) {
 			out++;	
 			c = fgetc(file);
 		}
+		out++;
 	}
 
 	fclose(file);
 	return out+columns;
 }
 
-void input() {
+void input(char *fname) {
 	int c = 0, i = 0, col = USER_INPUT_DEFAULT_COL_OFFSET, row = USER_INPUT_DEFAULT_ROW;
 	int pos = 0;
 	char cmd[256] = "";
@@ -198,8 +202,11 @@ void input() {
 
 	setColor(BLACK, WHITE, NORMAL);
 
-	pos = frac_to_c(fname, y, x);
+	pos = frac_to_c(fname, y, x-1);
 
 	sprintf(cmd, "%s/%s %s %d \"%s\"", SERV_DIR, ADD_SERVICE, fname, pos, input_buf);
+	system(cmd);
+
+	sprintf(cmd, "%s/%s %s %d", SERV_DIR, OUTPUT_SERVICE, fname, COL_MAX);
 	system(cmd);
 }

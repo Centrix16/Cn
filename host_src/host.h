@@ -1,7 +1,7 @@
 #ifndef __CN_TEXT_EDITOR_HOST_H_INCLUDED__
 #define __CN_TEXT_EDITOR_HOST_H_INCLUDED__
 
-#define VERSION "0.5"
+#define VERSION "0.6"
 #define DATE "06.04.2020"
 #define AUTHORS "Nifra (ASZ&TAS)"
 
@@ -38,10 +38,17 @@ void navigation(char*);
 void input(char*);
 void update(char*);
 int frac_to_c(char*, int, int);
-int get_m();
+
+int get_m(),
+	get_direct_use(),
+	get_use_help_file();
 
 /* flags function */
-void switch_m(), switch_h(), switch_v();
+void switch_m(), 
+	 switch_h(), 
+	 switch_v(),
+	 switch_d(),
+	 switch_H();
 
 /* flags_processing.c */
 int proc(char*, void (*funcs[])(), int, char*);

@@ -8,7 +8,7 @@ services:
 	gcc -o bin/crs servs/create_service.c
 	gcc -o bin/rms servs/remove_service.c
 	gcc -o bin/fs servs/find_service.c
-	gcc -o bin/is servs/insert_service.c
+	gcc -o bin/rs servs/replace_service.c
 
 main:
 	gcc -o cn host_src/host.c host_src/host_funcs.c host_src/flag_processing.c coniox/libconiox.c

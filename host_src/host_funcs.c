@@ -13,7 +13,7 @@
 int x = 1, y = 1;
 int line = 0;
 
-int m = 1; // flags
+int m = 1, direct_use = 0, use_help_file = 0; // flags
 
 char input_buf[1024];
 
@@ -191,6 +191,22 @@ void switch_v() {
 	exit(0);
 }
 
+void switch_d() {
+	direct_use = !direct_use;
+}
+
+void switch_H() {
+	use_help_file = !use_help_file;
+}
+
 int get_m() {
 	return m;
+}
+
+int get_direct_use() {
+	return direct_use;
+}
+
+int get_use_help_file() {
+	return use_help_file;
 }

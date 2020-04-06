@@ -183,6 +183,12 @@ void switch_m() {
 
 void switch_h() {
 	printf("Cn -- text editor by %s v%s %s\n", AUTHORS, VERSION, DATE);	
+	printf("\tflags\n");
+	printf("m - minimal use of terminal capabilities, turns off the backlight, and resizing\n");
+	printf("v - displays the version of the program\n");
+	printf("h - gives a short help\n");
+	printf("d - do not use file buffer, i.e. work directly with the file\n");
+	printf("H - opening documentation (doc/help) in the editor\n");
 	exit(0);
 }
 

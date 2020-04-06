@@ -11,7 +11,7 @@ services:
 	gcc -o bin/is servs/insert_service.c
 
 main:
-	gcc -o cn host.c coniox/libconiox.c
+	gcc -o cn host_src/host.c host_src/host_funcs.c host_src/flag_processing.c coniox/libconiox.c
 
 rmb:
 	rm -rf bin

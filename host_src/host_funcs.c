@@ -20,7 +20,7 @@ char input_buf[1024];
 void update(char *fname) {
 	char cmd[256] = "";	
 
-	sprintf(cmd, "%s/%s %s %d", SERV_DIR, OUTPUT_SERVICE, fname, COL_MAX);
+	sprintf(cmd, "%s%c%s %s %d", SERV_DIR, DIR_SEP, OUTPUT_SERVICE, fname, COL_MAX);
 	system(cmd);
 }
 
@@ -171,11 +171,10 @@ void input(char *fname) {
 
 	pos = frac_to_c(fname, y, x-1);
 
-	sprintf(cmd, "%s/%s %s %d \"%s\"", SERV_DIR, ADD_SERVICE, fname, pos, input_buf);
+	sprintf(cmd, "%s%c%s %s %d \"%s\"", SERV_DIR, DIR_SEP, ADD_SERVICE, fname, pos, input_buf);
 	system(cmd);
 
-	sprintf(cmd, "%s/%s %s %d", SERV_DIR, OUTPUT_SERVICE, fname, COL_MAX);
-	system(cmd);
+	update(fname);
 }
 
 void switch_m() {

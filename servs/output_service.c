@@ -9,6 +9,12 @@
 #include <stdlib.h>
 #include "../coniox/coniox.h"
 
+#ifdef WIN32
+	#define SUB 1
+#else
+	#define SUB 0
+#endif
+
 int main(int argc, char *argv[]) {
 	FILE *fp = NULL;
 	char ch = (char)0;
@@ -23,7 +29,7 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
-	mvCursor(1, 1);
+	mvCursor(1-SUB, 1-SUB);
 	setColor(BLACK, WHITE, NORMAL);
 
 	col_max = atoi(argv[2]);

@@ -2,3 +2,4 @@
 *.exe
 *.nu
 returned
+bin/

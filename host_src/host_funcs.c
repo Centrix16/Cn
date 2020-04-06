@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
+#include <time.h>
 #include <sys/stat.h>
 
 #include "../coniox/coniox.h"

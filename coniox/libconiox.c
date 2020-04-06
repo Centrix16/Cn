@@ -52,7 +52,7 @@
 	}
 
 	void setWindowSize(int x_size, int y_size) {
-		SMALL_RECT windowSize = {0 , 0 , x_size , y_size} //change the values
+		SMALL_RECT windowSize = {0 , 0 , x_size , y_size}; //change the values
 	    SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE), TRUE, &windowSize);
 	}
 

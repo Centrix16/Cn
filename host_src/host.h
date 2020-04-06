@@ -1,6 +1,10 @@
 #ifndef __CN_TEXT_EDITOR_HOST_H_INCLUDED__
 #define __CN_TEXT_EDITOR_HOST_H_INCLUDED__
 
+#define VERSION "0.5"
+#define DATE "06.04.2020"
+#define AUTHORS "Nifra (ASZ&TAS)"
+
 #define SERV_DIR "bin"
 
 #define OUTPUT_SERVICE "os"
@@ -20,5 +24,20 @@
 
 #define LENGHT 100
 #define HEIGHT 30
+
+/* host_funcs.c */
+char *get_buf_name(char*);
+void get_file_info(char*);
+void navigation(char*);
+void input(char*);
+void update(char*);
+int frac_to_c(char*, int, int);
+int get_m();
+
+/* flags function */
+void switch_m(), switch_h(), switch_v();
+
+/* flags_processing.c */
+int proc(char*, void (*funcs[])(), int, char*);
 
 #endif

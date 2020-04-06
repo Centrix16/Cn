@@ -23,7 +23,7 @@
 
 	void mvCursor(int x, int y) {
 		HANDLE hOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-		COORD crd = {y, x};
+		COORD crd = {x, y};
 		SetConsoleCursorPosition(hOutput, crd);
 	}
 

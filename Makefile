@@ -3,7 +3,7 @@ services:
 	gcc -o bin/ads servs/add_service.c
 	gcc -o bin/cs servs/color_service.c
 	gcc -o bin/ps servs/position_service.c
-	gcc -o bin/os servs/output_service.c
+	gcc -o bin/os servs/output_service.c coniox/libconiox.c
 	gcc -o bin/es servs/erase_service.c
 	gcc -o bin/crs servs/create_service.c
 	gcc -o bin/rms servs/remove_service.c

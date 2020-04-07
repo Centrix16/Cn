@@ -9,13 +9,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <locale.h>
 #include <sys/stat.h>
 
 #include "../coniox/coniox.h"
 #include "host.h"
 
 int main(int argc, char *argv[]) {
-	void (*flag_funcs[])() = {switch_m, switch_h, switch_v, switch_d, switch_H};	
+	void (*flag_funcs[])() = {switch_m, switch_h, switch_v, switch_d, switch_H, switch_a};
 	char *fname = NULL; 
 
 	if (argc < 2) {
@@ -26,7 +27,7 @@ int main(int argc, char *argv[]) {
 	fname = argv[1];
 
 	if (argc == 3) {
-		proc("mhvdH", flag_funcs, 5, argv[2]);
+		proc("mhvdHa", flag_funcs, 6, argv[2]);
 	}
 
 	if (get_m())
@@ -35,6 +36,8 @@ int main(int argc, char *argv[]) {
 		fname = "doc/help";
 	if (!get_direct_use())
 		; /* buffer creation */
+	if (get_locale())
+		setlocale(LC_ALL, " ");
 	
 	clean();
 

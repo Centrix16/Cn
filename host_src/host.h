@@ -41,14 +41,16 @@ int frac_to_c(char*, int, int);
 
 int get_m(),
 	get_direct_use(),
-	get_use_help_file();
+	get_use_help_file(),
+	get_locale();
 
 /* flags function */
 void switch_m(), 
 	 switch_h(), 
 	 switch_v(),
 	 switch_d(),
-	 switch_H();
+	 switch_H(),
+	 switch_a();
 
 /* flags_processing.c */
 int proc(char*, void (*funcs[])(), int, char*);

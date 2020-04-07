@@ -1,7 +1,11 @@
 Cn -- text editor by Nifra (ASZ&TAS) v0.6 06.04.2020
-        flags
-m - minimal use of terminal capabilities, turns off the backlight, and resizing
-v - displays the version of the program
-h - gives a short help
-d - do not use file buffer, i.e. work directly with the file
-H - opening documentation (doc/help) in the editor
+
+== Help file ==
+
+	-- flags
+	syntax: (./)cn <file> -<flags>
+	m - minimal use of terminal capabilities, turns off the backlight, and resizing
+	v - displays the version of the program
+	h - gives a short help
+	d - do not use file buffer, i.e. work directly with the file
+	H - opening documentation (doc/help) in the editor

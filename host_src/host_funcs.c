@@ -209,7 +209,8 @@ void switch_h() {
 	v - displays the version of the program\n\
 	h - gives a short help\n\
 	d - do not use file buffer, i.e. work directly with the file\n\
-	H - opening documentation (doc/help) in the editor\n");
+	H - opening documentation (doc/help) in the editor\n\
+	a - turns off localization\n"); 
 	exit(0);
 }
 

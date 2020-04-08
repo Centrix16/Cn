@@ -49,5 +49,8 @@ int main(int argc, char *argv[]) {
 	navigation(fname);
 	clean();
 
+	if (!get_direct_use())
+		rename(fname, get_origin_name(fname));
+
 	return 0;
 }

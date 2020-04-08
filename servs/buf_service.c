@@ -1,5 +1,5 @@
 /*
- * 
+ * Creates a file-related buffer
  * v0.1
  * 06.04.2020
  * Nifra -- TAS

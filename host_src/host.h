@@ -54,5 +54,5 @@ void switch_m(),
 
 /* flags_processing.c */
 int proc(char*, void (*funcs[])(), int, char*);
-
+int find(char *arr, int len, int c); 
 #endif

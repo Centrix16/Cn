@@ -35,12 +35,15 @@ int main(int argc, char *argv[]) {
 	col_max = atoi(argv[2]);
 	ch = getc(fp);
 	while (ch != EOF) {
-		if ((col % col_max == 0 && col) && ch != '\n')
-			putchar('\n');	
+		if ((col == col_max) && ch != '\n') {
+			putchar('\n');
+			col = 0;
+		}
 		else if (ch == '\n')
 			puts("~");	
 		else
 			putchar(ch);
+
 		ch = getc(fp);
 		col++;
 	}

@@ -4,3 +4,4 @@
 returned
 bin/
 *.swp
+*.*.stackdump

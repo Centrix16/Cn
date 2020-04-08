@@ -1,14 +1,15 @@
 #ifndef __CN_TEXT_EDITOR_HOST_H_INCLUDED__
 #define __CN_TEXT_EDITOR_HOST_H_INCLUDED__
 
-#define VERSION "0.6"
-#define DATE "06.04.2020"
+#define VERSION "0.7"
+#define DATE "08.04.2020"
 #define AUTHORS "Nifra (ASZ&TAS)"
 
 #define SERV_DIR "bin"
 
 #define OUTPUT_SERVICE "os"
 #define ADD_SERVICE "ads"
+#define BUF_SERVICE "bs"
 
 #define COL_MAX 64
 #define COL_END 100
@@ -37,6 +38,7 @@ void get_file_info(char*);
 void navigation(char*);
 void input(char*);
 void update(char*);
+void add_buf(char *fname);
 int frac_to_c(char*, int, int);
 
 int get_m(),
@@ -54,5 +56,5 @@ void switch_m(),
 
 /* flags_processing.c */
 int proc(char*, void (*funcs[])(), int, char*);
-int find(char *arr, int len, int c); 
+int find(char *arr, int len, int c);
 #endif

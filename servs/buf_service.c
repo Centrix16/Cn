@@ -8,36 +8,31 @@
 #include <stdio.h>
 #include <string.h>
 
-int main(int argc, char *argv[])
-{
-	printf("hello\n");
-	if (argc != 2) {
-		fprintf(stderr, "%s: %s <bufname>\n", argv[0], argv[0]);
-		return 1;
-	}
-	FILE *fp, *buf;
-	char *bufname;
-	sprintf(bufname, "%s_buf", argv[1]);
+int main(int argc, char *argv[]) {
+	FILE *fp = NULL, *buf = NULL;
+	char *bufname = NULL;
+	int ch = 0;
 
-	printf("%s\n", bufname);
-	if ((fp = fopen(argv[1], "r")) != NULL) {
-		printf("hi");
+	if (argc != 2) {
+		fprintf(stderr, "%s: %s <fname>\n", argv[0], argv[0]);
 		return 1;
 	}
-	printf("hello\n");
-	perror("fopen");
+	if ((fp = fopen(argv[1], "r")) == NULL) {
+		perror(argv[0]);	
+		return 0;
+	}
+	
+	strcat(argv[1], "_buf");
+	bufname = argv[1];
 
 	if ((buf = fopen(bufname, "w")) == NULL) {
-		fprintf(stderr, "s: can not open %s file", argv[0], bufname);
+		perror(argv[0]);	
 		return 1;
 	}
-	printf("hello\n");
 
-	char ch;
 	while ((ch = fgetc(fp)) != EOF) {
 		fputc(ch, buf);
 	}
-	printf("hello\n");
 
 	fclose(fp);
 	fclose(buf);

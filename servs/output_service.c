@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 	if ((fp = fopen(argv[1], "r")) == NULL) {
-		fprintf(stderr, "Can not open the `%s` file\n", argv[1]);
+		perror(argv[0]);	
 		return 1;
 	}
 

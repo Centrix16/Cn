@@ -17,7 +17,7 @@
 
 int main(int argc, char *argv[]) {
 	void (*flag_funcs[])() = {switch_m, switch_h, switch_v, switch_d, switch_H, switch_a};
-	char *fname = NULL, *bname = NULL; 
+	char *fname = NULL;
 
 	if (argc < 2) {
 		fprintf(stderr, "%s: %s <fname> <optional-flags>\n", argv[0]);
@@ -35,19 +35,18 @@ int main(int argc, char *argv[]) {
 	if (get_use_help_file())
 		fname = "doc/help";
 	if (!get_direct_use()) {
-		bname = get_buf_name(argv[1]);
 		add_buf(fname);
-	} else
-   		strcpy(bname, fname);	
+		fname = get_buf_name(argv[1]);
+	} 
 	if (get_locale())
 		setlocale(LC_ALL, " ");
 	
 	clean();
 
-	update(bname);
+	update(fname);
 
 	get_file_info(fname);
-	navigation(bname);
+	navigation(fname);
 	clean();
 
 	return 0;

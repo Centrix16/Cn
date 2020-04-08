@@ -27,8 +27,6 @@ void update(char *fname) {
 void add_buf(char *fname) {
 	char cmd[256] = "";
 	
-	if (direct_use)
-			return;
 	sprintf(cmd, "%s%c%s %s", SERV_DIR, DIR_SEP, BUF_SERVICE, fname);
 	system(cmd);
 }
@@ -37,12 +35,26 @@ char *get_buf_name(char *fname) {
 	return strcat(fname, "_buf");
 }
 
+char *get_origin_name(char *bufname) {
+	static char origin[256] = "";
+
+	strcpy(origin, bufname);
+	origin[strlen(bufname)-4] = '\0';
+
+	return origin;
+}
+
 void get_file_info(char *fname) {
 	struct stat buf;
+	char *fname_ptr = fname;
 
 	stat(fname, &buf);
 
-	output("NAME: %s", fname);
+	if (!direct_use)
+		output("NAME: %s", get_origin_name(fname));	
+	if (direct_use)
+		output("NAME: %s", fname);
+
 	output("SIZE: %d", buf.st_size);
 	output("UOID: %d", buf.st_uid);
 	output("LMOD: %s", ctime(&buf.st_ctime));

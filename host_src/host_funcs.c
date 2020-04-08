@@ -24,6 +24,15 @@ void update(char *fname) {
 	system(cmd);
 }
 
+void add_buf(char *fname) {
+	char cmd[256] = "";
+	
+	if (direct_use)
+			return;
+	sprintf(cmd, "%s%c%s %s", SERV_DIR, DIR_SEP, BUF_SERVICE, fname);
+	system(cmd);
+}
+
 char *get_buf_name(char *fname) {
 	return strcat(fname, "_buf");
 }

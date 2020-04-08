@@ -40,7 +40,9 @@ void input(char*);
 void update(char*);
 void add_buf(char *fname);
 int frac_to_c(char*, int, int);
+char *get_origin_name(char*);
 
+/* flag state get functions */
 int get_m(),
 	get_direct_use(),
 	get_use_help_file(),

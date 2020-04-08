@@ -1,7 +1,7 @@
 /*
  * host -- combines services together
- * v0.6
- * 06.04.2020
+ * v0.7
+ * 08.04.2020
  * Nifra -- ASZ
  */
 
@@ -17,7 +17,7 @@
 
 int main(int argc, char *argv[]) {
 	void (*flag_funcs[])() = {switch_m, switch_h, switch_v, switch_d, switch_H, switch_a};
-	char *fname = NULL; 
+	char *fname = NULL, *bname = NULL; 
 
 	if (argc < 2) {
 		fprintf(stderr, "%s: %s <fname> <optional-flags>\n", argv[0]);
@@ -34,18 +34,20 @@ int main(int argc, char *argv[]) {
 		setWindowSize(LENGHT, HEIGHT);
 	if (get_use_help_file())
 		fname = "doc/help";
-	if (!get_direct_use())
-		; /* buffer creation */
+	if (!get_direct_use()) {
+		bname = get_buf_name(argv[1]);
+		add_buf(fname);
+	} else
+   		strcpy(bname, fname);	
 	if (get_locale())
 		setlocale(LC_ALL, " ");
 	
 	clean();
 
-	// update(get_buf_name(argv[1]));
-	update(fname);
+	update(bname);
 
 	get_file_info(fname);
-	navigation(fname);
+	navigation(bname);
 	clean();
 
 	return 0;

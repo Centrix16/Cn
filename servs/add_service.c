@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
 	src = fopen(argv[1], "r");
 	dst = fopen(out_fname, "w");
 	if (!dst || !src) {
-		perror("fopen");
+		perror(argv[0]);
 		return 0;
 	}
 

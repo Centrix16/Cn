@@ -31,6 +31,13 @@ void add_buf(char *fname) {
 	system(cmd);
 }
 
+void erase(char *fname, int start, int end) {
+	char cmd[256];
+
+	sprintf(cmd, "%s%s%s %s %d %d", SERV_DIR, DIR_SEP, ERASE_SERVICE, fname, start, end);
+	system(cmd);
+}
+
 char *get_buf_name(char *fname) {
 	return strcat(fname, "_buf");
 }
@@ -95,6 +102,8 @@ void navigation(char *fname) {
 			default:
 				if (c == 'i')
 					input(fname);	
+				else if (c == 'e')
+					erase_input(fname);
 			break;
 		}
 
@@ -196,6 +205,24 @@ void input(char *fname) {
 	system(cmd);
 
 	update(fname);
+}
+
+void erase_input(char *fname) {
+	int start_pos, end_pos;
+	char input_pos[32];
+	
+	mvCursor(X_START+USER_INPUT_DEFAULT_COL_OFFSET, Y_START+USER_INPUT_DEFAULT_ROW+1); 
+	gets(input_pos);
+
+	start_pos = frac_to_c(fname, y, x);
+	end_pos = start_pos + atoi(input_pos);
+	if (start_pos > end_pos) { // swap
+		start_pos |= end_pos;
+		start_pos |= end_pos;
+		start_pos |= end_pos;
+	} else if (start_pos == end_pos)
+		return;
+	erase(fname, start_pos, end_pos);
 }
 
 void switch_m() {

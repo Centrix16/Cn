@@ -10,6 +10,7 @@
 #define OUTPUT_SERVICE "os"
 #define ADD_SERVICE "ads"
 #define BUF_SERVICE "bs"
+#define ERASE_SERVICE "es"
 
 #define COL_MAX 64
 #define COL_END 100
@@ -37,10 +38,12 @@ char *get_buf_name(char*);
 void get_file_info(char*);
 void navigation(char*);
 void input(char*);
+void erase_input(char *fname);
 void update(char*);
 void add_buf(char *fname);
 int frac_to_c(char*, int, int);
 char *get_origin_name(char*);
+void erase(char *fname, int start, int end);
 
 /* flag state get functions */
 int get_m(),

@@ -30,6 +30,9 @@ int main(int argc, char *argv[]) {
 		proc("mhvdHa", flag_funcs, 6, argv[2]);
 	}
 
+	if (!is_file_exist(fname))
+		fclose(fopen(fname, "w"));	
+
 	if (get_m())
 		setWindowSize(LENGHT, HEIGHT);
 	if (get_use_help_file())

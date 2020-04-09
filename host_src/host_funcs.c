@@ -15,7 +15,7 @@ int line = 0;
 
 int m = 1, direct_use = 0, use_help_file = 0, locale = 1; // flags
 
-char input_buf[1024];
+char input_buf[BUF_LEN];
 
 void update(char *fname) {
 	char cmd[256] = "";	
@@ -29,6 +29,15 @@ void add_buf(char *fname) {
 	
 	sprintf(cmd, "%s%c%s %s", SERV_DIR, DIR_SEP, BUF_SERVICE, fname);
 	system(cmd);
+}
+
+int is_file_exist(char *fname) {
+	FILE *fptr = fopen(fname, "r");
+
+	if (!fptr)
+		return 0;
+	else
+		return 1;
 }
 
 char *get_buf_name(char *fname) {
@@ -136,13 +145,32 @@ int frac_to_c(char *fname, int rows, int columns) {
 	return out+columns;
 }
 
+int transform(int c) {
+	switch (c) {
+		case TAB:
+			return '\t';
+
+		case CTRL_BS:
+			return '\0';
+	}
+
+	return c;
+}
+
+void clear_buf() {
+	for (int i = 0; i < BUF_LEN; i++)
+		input_buf[i] = 0;	
+}
+
 void input(char *fname) {
 	int c = 0, i = 0, col = USER_INPUT_DEFAULT_COL_OFFSET, row = USER_INPUT_DEFAULT_ROW;
 	int pos = 0;
 	char cmd[256] = "";
 
-	while (i < 1024 && c != ESC) {
-		switch (c) {	
+	clear_buf();
+
+	while (i < BUF_LEN && c != ESC) {
+		switch (c) {
 			case NL:
 				row++;
 				col = USER_INPUT_DEFAULT_COL_OFFSET;
@@ -166,6 +194,8 @@ void input(char *fname) {
 			break;
 
 			default:		
+				c = transform(c);
+
 				if (is_valid_c(c)) {
 					input_buf[i++] = c;
 

@@ -22,9 +22,13 @@
 #define ESC 27
 #define NL 10
 #define BS 127
+#define TAB 9
+#define CTRL_BS 31
 
 #define LENGHT 100
 #define HEIGHT 30
+
+#define BUF_LEN 1024
 
 #ifdef WIN32
 	#define DIR_SEP '\\'
@@ -41,6 +45,7 @@ void update(char*);
 void add_buf(char *fname);
 int frac_to_c(char*, int, int);
 char *get_origin_name(char*);
+int is_file_exist(char*);
 
 /* flag state get functions */
 int get_m(),

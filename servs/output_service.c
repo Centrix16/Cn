@@ -1,7 +1,7 @@
 /*
  * File output to the screen
- * v0.4
- * 06.04.2020
+ * v0.5
+ * 09.04.2020
  * Nifra -- TAS
  */
 
@@ -10,14 +10,14 @@
 #include "../coniox/coniox.h"
 
 #ifdef WIN32
-	#define SUB 1
+	#define START 0
 #else
-	#define SUB 0
+	#define START 1
 #endif
 
 int main(int argc, char *argv[]) {
 	FILE *fp = NULL;
-	char ch = (char)0;
+	int ch = 0;
 	int col = 0, col_max = 0;
 
 	if (argc != 3) {
@@ -29,18 +29,20 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
-	mvCursor(1-SUB, 1-SUB);
+	mvCursor(START, START);
 	setColor(BLACK, WHITE, NORMAL);
 
 	col_max = atoi(argv[2]);
 	ch = getc(fp);
 	while (ch != EOF) {
 		if ((col == col_max) && ch != '\n') {
-			putchar('\n');
+			printf("\n%c", ch);
 			col = 0;
 		}
-		else if (ch == '\n')
-			puts("~");	
+		else if (ch == '\n') {
+			puts("~");
+			col = 0;
+		}
 		else
 			putchar(ch);
 
